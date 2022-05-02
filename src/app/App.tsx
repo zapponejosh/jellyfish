@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import logo from './logo.svg';
 import styles from './App.module.css';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Welcome from './components/Welcome/Welcome';
 
 function App(): JSX.Element {
@@ -40,14 +40,10 @@ function App(): JSX.Element {
               Vite Docs
             </a>
           </p>
-          <Switch>
-            <Route path="/about">
-              <main>About</main>
-            </Route>
-            <Route path="/">
-              <main>Home</main>
-            </Route>
-          </Switch>
+          <Routes>
+            <Route path="/about" element={<main>About</main>} />
+            <Route path="/" element={<main>Main</main>} />
+          </Routes>
         </header>
       </div>
     </Router>
