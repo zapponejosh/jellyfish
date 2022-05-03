@@ -1,10 +1,10 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "dist",
+    "outDir": "dist/server",
     "module": "commonjs",
     "noEmit": false
   },
-  "include": ["src/*.ts"],
+  "include": ["src/server/*.ts"],
   "exclude": ["src/app"]
 }

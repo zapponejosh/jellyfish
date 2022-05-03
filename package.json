@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\" \"npm run storybook\"",
     "client:dev": "vite",
-    "server:dev": "ts-node-dev --project tsconfig.server.json src/server",
+    "server:dev": "ts-node-dev --project tsconfig.server.json src/server/server",
     "server:build": "tsc --project tsconfig.server.json",
     "client:build": "vite build",
     "storybook:build": "build-storybook -o dist/storybook",
