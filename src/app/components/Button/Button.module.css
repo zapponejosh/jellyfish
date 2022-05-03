@@ -6,4 +6,10 @@
   border: none;
   border-radius: 0.4em;
   text-transform: uppercase;
+  line-height: 20px;
+}
+
+.button:hover {
+  transform: scale(102%);
+  cursor: pointer;
 }

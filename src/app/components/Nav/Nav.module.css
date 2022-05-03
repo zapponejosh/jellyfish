@@ -1,0 +1,19 @@
+.nav {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 40px;
+}
+
+.menu {
+  display: flex;
+}
+
+.menu ul {
+  padding-right: 15px;
+}
+
+.menu li {
+  list-style: none;
+  display: inline;
+  padding: 8px;
+}
