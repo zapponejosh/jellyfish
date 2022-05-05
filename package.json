@@ -1,6 +1,6 @@
 {
-  "name": "vite-boilerplate",
-  "version": "0.0.0",
+  "name": "project-jellyfish",
+  "version": "0.0.1",
   "scripts": {
     "dev": "concurrently \"npm run server:dev\" \"npm run client:dev\" \"npm run storybook\"",
     "client:dev": "vite",
