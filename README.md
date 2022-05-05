@@ -1,6 +1,5 @@
-# Vite Boilerplate
+# Project Jellyfish 🌊
 
-> Quickly bootstrap a new project with Vite Boilerplate.
 
 ### Note:
 
