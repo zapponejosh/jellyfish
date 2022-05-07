@@ -1,4 +1,4 @@
-module github.com/zapponejosh/jellyApi
+module github.com/zapponejosh/jellyfish
 
 go 1.17
 

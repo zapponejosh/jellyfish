@@ -7,7 +7,7 @@ import (
 	"net/http"
 
 	"github.com/gorilla/mux"
-	"github.com/zapponejosh/jellyApi/dbOps"
+	"github.com/zapponejosh/jellyfish/dbOps"
 )
 
 func main() {
