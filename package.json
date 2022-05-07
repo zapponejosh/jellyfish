@@ -6,10 +6,13 @@
     "./web/*"
   ],
   "scripts": {
-    "dev": "concurrently \"go run main.go\" \" cd web && npm run client:dev\"",
-    "client:dev": "cd web && vite",
+    "dev": "concurrently -n='server,web' -p -c='yellow,cyan' \"go run main.go\" \"npm run web:dev\"",
+    "web:dev": "cd web && npm run dev",
     "server:dev": "go run main.go",
     "prepare": "cd .. && husky install",
+    "build": "npm run build:server && npm run build:web",
+    "build:web": "cd web && npm run build",
+    "build:server": "go build .",
     "start": "go run main.go"
   },
   "devDependencies": {

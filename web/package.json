@@ -2,18 +2,14 @@
   "name": "web",
   "version": "0.0.1",
   "scripts": {
-    "dev": "concurrently \"go run main.go\" \"npm run client:dev\"",
-    "client:dev": "vite",
-    "server:dev": "ts-node-dev --project tsconfig.server.json src/server/server",
-    "server:build": "tsc --project tsconfig.server.json",
-    "client:build": "vite build",
+    "dev": "vite",
+    "build": "vite build && npm run storybook:build",
     "storybook:build": "build-storybook -o dist/storybook",
-    "build": "npm run server:build && npm run client:build && npm run storybook:build",
     "serve": "vite preview",
     "prepare": "cd .. && husky install",
     "test": "tsc && prettier --check . && eslint . && stylelint \"**/*.css\"",
     "storybook": "start-storybook -p 6006",
-    "start": "go run main.go"
+    "start": "vite"
   },
   "devDependencies": {
     "@babel/core": "^7.17.10",
