@@ -1,30 +1,45 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
-	"net/http"
 
-	"github.com/gorilla/mux"
-	"github.com/zapponejosh/jellyfish/dbOps"
+	"os"
+
+	"github.com/zapponejosh/jellyfish/internal/dbops"
+	"github.com/zapponejosh/jellyfish/internal/server"
+	"github.com/zapponejosh/jellyfish/internal/settings"
 )
 
 func main() {
-	r := mux.NewRouter()
-
-	// API routes
-	api := r.PathPrefix("/api").Subrouter()
-	api.HandleFunc("/hello", handlerApi)
-
-	// Start server
-	fmt.Println("Starting the server on http://localhost:3001")
-	log.Fatal(http.ListenAndServe(":3001", r))
-
+	if err := run(); err != nil {
+		os.Exit(1)
+	}
 }
 
-func handlerApi(w http.ResponseWriter, r *http.Request) {
-	str := dbOps.TestQuery()
+func run() error {
+	appSettings, err := settings.New()
+	if err != nil {
+		fmt.Println("error getting settings", err)
+		return err
+	}
+	fmt.Println(appSettings)
 
-	json.NewEncoder(w).Encode(map[string]string{"message": "Hello from the Go API -- Check this out for serving the react app too: https://github.com/gorilla/mux#serving-single-page-applications", "dataTest": str})
+	db, err := dbops.New(appSettings)
+	if err != nil {
+		fmt.Println("error connecting to db", err)
+		return err
+	}
+	defer db.Close()
+
+	svr, err := server.New(appSettings, db)
+	if err != nil {
+		fmt.Println("error starting server", err)
+		return err
+	}
+
+	if err := svr.ListenAndServe(); err != nil {
+		fmt.Println("error running server", err)
+		return err
+	}
+	return nil
 }
