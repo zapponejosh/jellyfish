@@ -8,15 +8,12 @@ import (
 	"net/http"
 
 	// "github.com/gorilla/mux"
+	"github.com/zapponejosh/jellyfish/internal/models"
 	"github.com/zapponejosh/jellyfish/internal/server/handlers/responders"
 )
 
-type Test struct {
-	testStr string
-}
-
 type TestGetter interface {
-	GetTest(ctx context.Context) (*Test, error)
+	GetTest(ctx context.Context) (*models.Test, error)
 }
 
 func NewGetHandler(getter TestGetter) *GetHandler {
@@ -28,16 +25,17 @@ type GetHandler struct {
 }
 
 func (h GetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	user, err := h.getter.GetTest(r.Context())
+	testR, err := h.getter.GetTest(r.Context())
 	if errors.Is(err, sql.ErrNoRows) {
-		responders.Error(w, "user not found", http.StatusNotFound)
+		responders.Error(w, "not found", http.StatusNotFound)
 		return
 	}
 	if err != nil {
-		log.Println("error getting user:", err)
-		responders.Error(w, "error getting user", http.StatusInternalServerError)
+		log.Println("error:", err)
+		responders.Error(w, "error", http.StatusInternalServerError)
 		return
 	}
+	res := map[string]string{"message": "Hello from the Go API -- Check this out for serving the react app too: https://github.com/gorilla/mux#serving-single-page-applications", "dataTest": testR.TestStr}
 
-	responders.OK(w, user)
+	responders.OK(w, res)
 }
