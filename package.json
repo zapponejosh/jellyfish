@@ -13,7 +13,8 @@
     "build": "npm run build:server && npm run build:web",
     "build:web": "cd web && npm run build",
     "build:server": "go build .",
-    "start": "go run main.go"
+    "start": "go run main.go",
+    "seed": "psql jellyapp -h 127.0.0.1 -d jelly -a -f seed.sql"
   },
   "devDependencies": {
     "husky": "^7.0.4",
