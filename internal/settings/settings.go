@@ -11,9 +11,12 @@ type DBSettings struct {
 }
 
 func (db DBSettings) DSN() string {
-	return fmt.Sprintf("host=%s port=%d user=%s password=%s "+
-		"dbname=%s sslmode=disable",
-		db.Host, db.Port, db.User, db.Password, db.Name)
+	// postgres://username:password@localhost:5432/database_name
+	// return fmt.Sprintf("host=%s port=%d user=%s password=%s "+
+	// 	"dbname=%s sslmode=disable",
+	// 	db.Host, db.Port, db.User, db.Password, db.Name)
+	return fmt.Sprintf("postgres://%s:%s@%s:%d/%s",
+		db.User, db.Password, db.Host, db.Port, db.Name)
 }
 
 type Settings struct {
