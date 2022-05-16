@@ -22,5 +22,9 @@ func New(appSettings *settings.Settings, db *dbops.DB) (*http.Server, error) {
 	api.Handle("/user/{id:[0-9]+}", users.NewGetHandler(db)).Methods(http.MethodGet)
 	api.Handle("/user/{id:[0-9]+}", users.NewDeleteHandler(db)).Methods(http.MethodDelete)
 
+	// React App
+	spa := handlers.NewSpaHandler("./web/dist/app", "index.html")
+	r.PathPrefix("/").Handler(spa)
+
 	return &http.Server{Handler: r, Addr: appSettings.ServerAddress}, nil
 }
