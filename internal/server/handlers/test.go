@@ -2,12 +2,12 @@ package handlers
 
 import (
 	"context"
-	"database/sql"
 	"errors"
 	"log"
 	"net/http"
 
 	// "github.com/gorilla/mux"
+	"github.com/jackc/pgx/v4"
 	"github.com/zapponejosh/jellyfish/internal/models"
 	"github.com/zapponejosh/jellyfish/internal/server/handlers/responders"
 )
@@ -26,7 +26,7 @@ type GetHandler struct {
 
 func (h GetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	testR, err := h.getter.GetTest(r.Context())
-	if errors.Is(err, sql.ErrNoRows) {
+	if errors.Is(err, pgx.ErrNoRows) {
 		responders.Error(w, "not found", http.StatusNotFound)
 		return
 	}

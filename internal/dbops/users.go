@@ -26,3 +26,14 @@ func (d DB) CreateUser(ctx context.Context, user *models.User) (int, error) {
 	}
 	return lastInsertId, nil
 }
+
+func (d DB) DeleteUser(ctx context.Context, id int) (int, error) {
+	deletedUserId := 0
+
+	row := d.db.QueryRow(ctx, "DELETE FROM users WHERE id = $1 RETURNING id", id)
+	err := row.Scan(&deletedUserId)
+	if err != nil {
+		return 0, err
+	}
+	return deletedUserId, nil
+}

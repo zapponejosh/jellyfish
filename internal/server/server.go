@@ -20,6 +20,7 @@ func New(appSettings *settings.Settings, db *dbops.DB) (*http.Server, error) {
 	api.Handle("/hello", handlers.NewGetHandler(db))
 	api.Handle("/user", users.NewCreateHandler(db)).Methods(http.MethodPost)
 	api.Handle("/user/{id:[0-9]+}", users.NewGetHandler(db)).Methods(http.MethodGet)
+	api.Handle("/user/{id:[0-9]+}", users.NewDeleteHandler(db)).Methods(http.MethodDelete)
 
 	return &http.Server{Handler: r, Addr: appSettings.ServerAddress}, nil
 }

@@ -2,10 +2,8 @@ package dbops
 
 import (
 	"context"
-	// "database/sql"
 	"fmt"
 
-	// _ "github.com/lib/pq"
 	"github.com/jackc/pgx/v4"
 
 	"github.com/zapponejosh/jellyfish/internal/models"

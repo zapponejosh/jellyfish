@@ -2,13 +2,13 @@ package users
 
 import (
 	"context"
-	"database/sql"
 	"errors"
 	"log"
 	"net/http"
 	"strconv"
 
 	"github.com/gorilla/mux"
+	"github.com/jackc/pgx/v4"
 	"github.com/zapponejosh/jellyfish/internal/models"
 	"github.com/zapponejosh/jellyfish/internal/server/handlers/responders"
 )
@@ -34,7 +34,7 @@ func (h GetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	user, err := h.getter.GetUser(r.Context(), id)
-	if errors.Is(err, sql.ErrNoRows) {
+	if errors.Is(err, pgx.ErrNoRows) {
 		responders.Error(w, "user not found", http.StatusNotFound)
 		return
 	}
