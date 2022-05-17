@@ -35,7 +35,7 @@ func (h GetHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		responders.Error(w, "error", http.StatusInternalServerError)
 		return
 	}
-	res := map[string]string{"message": "Hello from the Go API -- Check this out for serving the react app too: https://github.com/gorilla/mux#serving-single-page-applications", "dataTest": testR.TestStr}
+	res := map[string]string{"message": "Hello from the Go API -- Check this out for serving the react app too: https://github.com/gorilla/mux#serving-single-page-applications", "dataTest": testR.TestStr.String}
 
 	responders.OK(w, res)
 }

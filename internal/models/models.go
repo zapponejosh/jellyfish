@@ -3,20 +3,31 @@ package models
 import "github.com/jackc/pgtype"
 
 type Test struct {
-	TestStr string
+	TestStr pgtype.Varchar
 }
 
 type Project struct {
 	ID          int
-	Admin       User
-	Start_date  string
-	End_date    string
-	Institution Institution
-	Created_at  string
-	Updated_at  string
-	Category    Category
-	Name        string
-	Description string
+	Admin       int
+	Start_date  pgtype.Date
+	End_date    pgtype.Date
+	Institution int
+	Created_at  pgtype.Timestamptz
+	Updated_at  pgtype.Timestamptz
+	Category    int
+	Name        pgtype.Varchar
+	Description pgtype.Varchar
+}
+
+type ProjectPreview struct {
+	Name          pgtype.Varchar
+	ID            int
+	Admin         pgtype.Varchar
+	AdminID       int
+	Institution   pgtype.Varchar
+	InstitutionID int
+	Category      pgtype.Varchar
+	CategoryID    int
 }
 
 type User struct {
@@ -31,15 +42,15 @@ type User struct {
 
 type Category struct {
 	ID   int
-	Name string
+	Name pgtype.Varchar
 }
 
 type Institution struct {
 	ID         int
-	Name       string
-	Email      string
-	Website    string
-	Owner      User
-	Created_at string
-	Updated_at string
+	Name       pgtype.Varchar
+	Email      pgtype.Varchar
+	Website    pgtype.Varchar
+	Owner      int
+	Created_at pgtype.Timestamptz
+	Updated_at pgtype.Timestamptz
 }
