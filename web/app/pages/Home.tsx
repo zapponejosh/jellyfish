@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import TileGrid from '../components/TileGrid/TileGrid';
-import Welcome from '../components/Welcome/Welcome';
 
 type Project = {
   Name: string;
