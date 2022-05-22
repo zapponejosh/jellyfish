@@ -1,0 +1,23 @@
+.tile {
+  background-color: rgb(244 244 244);
+  color: black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  border: 1px solid black;
+}
+
+.cat span {
+  background: blue;
+  color: aliceblue;
+  font-size: 0.7rem;
+  font-style: italic;
+  padding: 3px 7px;
+  border-radius: 30px;
+}
+
+.inst {
+  font-size: 0.7rem;
+  font-weight: 700;
+}
