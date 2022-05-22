@@ -18,6 +18,21 @@ type Project struct {
 	Name        pgtype.Varchar
 	Description pgtype.Varchar
 }
+type GetProject struct {
+	ID            int
+	AdminID       int
+	Admin         pgtype.Varchar
+	Start_date    pgtype.Date
+	End_date      pgtype.Date
+	InstitutionID int
+	Institution   pgtype.Varchar
+	Created_at    pgtype.Timestamptz
+	Updated_at    pgtype.Timestamptz
+	CategoryID    int
+	Category      pgtype.Varchar
+	Name          pgtype.Varchar
+	Description   pgtype.Varchar
+}
 
 type ProjectPreview struct {
 	Name          pgtype.Varchar
