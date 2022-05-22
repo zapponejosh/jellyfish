@@ -4,14 +4,14 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/jackc/pgx/v4"
+	"github.com/jackc/pgx/v4/pgxpool"
 
 	"github.com/zapponejosh/jellyfish/internal/models"
 	"github.com/zapponejosh/jellyfish/internal/settings"
 )
 
 type DB struct {
-	db *pgx.Conn
+	db *pgxpool.Pool
 }
 
 func (d DB) Close() error {
@@ -20,7 +20,7 @@ func (d DB) Close() error {
 
 func New(s *settings.Settings) (*DB, error) {
 	fmt.Println(s.DBSettings.DSN())
-	db, err := pgx.Connect(context.Background(), s.DBSettings.DSN())
+	db, err := pgxpool.Connect(context.Background(), s.DBSettings.DSN())
 	if err != nil {
 		return nil, err
 	}
